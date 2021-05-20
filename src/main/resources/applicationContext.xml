@@ -9,7 +9,7 @@
 
     <bean id="testBean"
           class="org.example.TestBean">
-        <constructor-arg value="Mike"/>
+        <constructor-arg value="Bob"/>
     </bean>
 
 </beans>
