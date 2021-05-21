@@ -1,4 +1,4 @@
-package org.example;
+package org.example.beans;
 
 public class TestBean {
     private String name;
