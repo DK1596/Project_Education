@@ -1,18 +1,17 @@
 package org.example;
 
-import org.example.inversion_of_control.book.Book;
-import org.example.inversion_of_control.book.EBook;
+import org.example.dependency_injection.IDCard;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new
                 ClassPathXmlApplicationContext("applicationContext.xml");
-        Book book = context.getBean("bookBean", Book.class);
 
-        EBook eBook = new EBook(book);
 
-        eBook.showGenre();
+        IDCard idCard = context.getBean("idCard", IDCard.class);
+        idCard.getName();
+        System.out.println(idCard.getAge());
 
         context.close();
     }

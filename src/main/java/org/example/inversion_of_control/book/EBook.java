@@ -1,13 +1,26 @@
 package org.example.inversion_of_control.book;
 
-public class EBook {
-    private Book book;
+import java.util.ArrayList;
+import java.util.List;
 
-    public EBook(Book book) {
-        this.book = book;
+public class EBook {
+    private List<Book> bookList = new ArrayList<>();
+
+//    public EBook(List<Book> bookList) {
+//        this.bookList = bookList;
+//    }
+
+    public List<Book> getBookList (){
+        return bookList;
+    }
+
+    public void setBookList (List<Book> bookList){
+        this.bookList = bookList;
     }
 
     public void showGenre(){
-        System.out.println("genre: "+book.getGenre());
+        for (Book book : bookList) {
+            System.out.println("genre: " + book.getGenre());
+        }
     }
 }

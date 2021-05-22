@@ -6,9 +6,35 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:idCard.properties"/>
 
-    <bean id="bookBean"
-          class="org.example.inversion_of_control.book.FantasyBook">
+    <bean id="infoBean1"
+          class="org.example.dependency_injection.Man">
+    </bean>
+    <bean id="infoBean2"
+          class="org.example.dependency_injection.Girl">
+    </bean>
+    <bean id="infoBean3"
+          class="org.example.dependency_injection.Child">
+    </bean>
+    <bean id="infoBean4"
+          class="org.example.dependency_injection.Boy">
+    </bean>
+    <bean id="infoBean5"
+          class="org.example.dependency_injection.Woman">
+    </bean>
+    <bean id="idCard"
+            class="org.example.dependency_injection.IDCard">
+        <property name="infoList">
+            <list>
+                <ref bean="infoBean1"/>
+                <ref bean="infoBean2"/>
+                <ref bean="infoBean3"/>
+                <ref bean="infoBean4"/>
+                <ref bean="infoBean5"/>
+            </list>
+        </property>
+        <property name="age" value="${idCard.age}"/>
     </bean>
 
 </beans>
