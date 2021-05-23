@@ -1,38 +1,29 @@
 package org.example.inversion_of_control.music;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MusicPlayer {
-    private Music music;
-    private String name;
-    private int volume;
+    // DI via field
+//    @Autowired
+    private ClassicalMusic classicalMusic;
+    private JazzMusic jazzMusic;
 
-    public String getName() {
-        return name;
+    // DI via constructor
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, JazzMusic jazzMusic) {
+        this.classicalMusic = classicalMusic;
+        this.jazzMusic = jazzMusic;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // DI via setter
+//    @Autowired
+//    public void setMusic(Music music) {
+//        this.music = music;
+//    }
 
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    //IoC
-    public MusicPlayer(Music music){
-        this.music = music;
-    }
-
-    public MusicPlayer(){}
-
-    public void setMusic(Music music){
-        this.music = music;
-    }
-
-    public void playMusic(){
-        System.out.println("playing: " + music.getSong());
+    public String playMusic(){
+        return "Playing: " + classicalMusic.getSong();
     }
 }
