@@ -14,8 +14,8 @@ public class MP3Player {
         this.musicPlayer = musicPlayer;
     }
 
-    @Override
-    public String toString() {
-        return "Mp3 player " + id + " " + musicPlayer.playMusic();
-    }
+//    @Override
+//    public String toString() {
+//        return "Mp3 player " + id + " " + musicPlayer.playMusic();
+//    }
 }

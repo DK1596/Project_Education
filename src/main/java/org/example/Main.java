@@ -1,6 +1,7 @@
 package org.example;
 
-import org.example.inversion_of_control.music.MP3Player;
+import org.example.inversion_of_control.music.MusicPlayer;
+import org.example.inversion_of_control.music.enum_music.EnumMusic;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
@@ -20,11 +21,12 @@ public class Main {
 //
 //        musicPlayer2.playMusic();
 
-//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        musicPlayer.playMusic();
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusic(EnumMusic.ClassicalMusic);
+        musicPlayer.playMusic(EnumMusic.JazzMusic);
 
-        MP3Player mp3Player = context.getBean("mp3", MP3Player.class);
-        System.out.println(mp3Player.toString());
+//        MP3Player mp3Player = context.getBean("mp3", MP3Player.class);
+//        System.out.println(mp3Player.toString());
 
         context.close();
     }

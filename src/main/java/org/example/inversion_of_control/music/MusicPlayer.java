@@ -1,21 +1,30 @@
 package org.example.inversion_of_control.music;
 
+import org.example.inversion_of_control.music.enum_music.EnumMusic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.util.Random;
 
 @Component
 public class MusicPlayer {
     // DI via field
-//    @Autowired
-    private ClassicalMusic classicalMusic;
-    private JazzMusic jazzMusic;
+    private Music music1;
+    private Music music2;
+
+    @Autowired
+    public MusicPlayer(@Qualifier("jazzMusic") Music music1, @Qualifier("classicalMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
+    }
+
 
     // DI via constructor
-    @Autowired
-    public MusicPlayer(ClassicalMusic classicalMusic, JazzMusic jazzMusic) {
-        this.classicalMusic = classicalMusic;
-        this.jazzMusic = jazzMusic;
-    }
+//    @Autowired
+//    public MusicPlayer(Music music) {
+//        this.music = music;
+//    }
 
     // DI via setter
 //    @Autowired
@@ -23,7 +32,22 @@ public class MusicPlayer {
 //        this.music = music;
 //    }
 
-    public String playMusic(){
-        return "Playing: " + classicalMusic.getSong();
+    public void playMusic(EnumMusic enumMusic){
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+
+//        switch (enumMusic){
+//            case ClassicalMusic:
+//                System.out.println(music2.getSong().get(randomNumber));
+//            case JazzMusic:
+//                System.out.println(music1.getSong().get(randomNumber));
+//            default:
+//                System.out.println("Not found music");
+//        }
+        if (enumMusic == EnumMusic.ClassicalMusic){
+            System.out.println(music2.getSong().get(randomNumber));
+        } else {
+            System.out.println(music1.getSong().get(randomNumber));
+        }
     }
 }
