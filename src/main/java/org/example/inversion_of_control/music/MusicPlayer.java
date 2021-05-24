@@ -1,38 +1,67 @@
 package org.example.inversion_of_control.music;
 
+import org.example.inversion_of_control.music.enum_music.EnumMusic;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.util.Random;
+
+@Component
 public class MusicPlayer {
-    private Music music;
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    // DI via field
+    private Music music1;
+    private Music music2;
+
+    @Autowired
+    public MusicPlayer(@Qualifier("jazzMusic") Music music1, @Qualifier("classicalMusic") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
     }
 
-    //IoC
-    public MusicPlayer(Music music){
-        this.music = music;
-    }
 
-    public MusicPlayer(){}
+    // DI via constructor
+//    @Autowired
+//    public MusicPlayer(Music music) {
+//        this.music = music;
+//    }
 
-    public void setMusic(Music music){
-        this.music = music;
-    }
+    // DI via setter
+//    @Autowired
+//    public void setMusic(Music music) {
+//        this.music = music;
+//    }
 
-    public void playMusic(){
-        System.out.println("playing: " + music.getSong());
+    public void playMusic(EnumMusic enumMusic){
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+
+//        switch (enumMusic){
+//            case ClassicalMusic:
+//                System.out.println(music2.getSong().get(randomNumber));
+//            case JazzMusic:
+//                System.out.println(music1.getSong().get(randomNumber));
+//            default:
+//                System.out.println("Not found music");
+//        }
+        if (enumMusic == EnumMusic.ClassicalMusic){
+            System.out.println(music2.getSong().get(randomNumber));
+        } else {
+            System.out.println(music1.getSong().get(randomNumber));
+        }
     }
 }

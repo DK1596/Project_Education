@@ -6,23 +6,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.example.inversion_of_control.music"/>
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-    <bean id="musicBean"
-          class="org.example.inversion_of_control.music.ClassicalMusic"
-          init-method="initMethod"
-          destroy-method="destroyMethod"
-        factory-method="getClassicalMusic">
-        <property name="volume" value="45"/>
-    </bean>
-
-<!--    <bean id="musicPlayer"-->
-<!--            class="org.example.inversion_of_control.music.MusicPlayer"-->
-<!--            scope="prototype">-->
-<!--        <property name="music" ref="musicBean"/>-->
-
-<!--        <property name="name" value="some name"/>-->
-<!--        <property name="volume" value="45"/>-->
-<!--    </bean>-->
-
 </beans>

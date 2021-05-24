@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.inversion_of_control.music.ClassicalMusic;
+import org.example.inversion_of_control.music.MusicPlayer;
+import org.example.inversion_of_control.music.enum_music.EnumMusic;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
@@ -8,28 +10,29 @@ public class Main {
         ClassPathXmlApplicationContext context = new
                 ClassPathXmlApplicationContext("applicationContext.xml");
 
-//        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-//        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        Music music = context.getBean("classicalMusic", Music.class);
 //
-//        boolean comparison = firstMusicPlayer == secondMusicPlayer;
+//        MusicPlayer musicPlayer = new MusicPlayer(music);
 //
-//        System.out.println(comparison);
+//        musicPlayer.playMusic();
 //
-//        System.out.println(firstMusicPlayer);
-//        System.out.println(secondMusicPlayer);
+//        Music music2 = context.getBean("jazzMusic", Music.class);
 //
-//        firstMusicPlayer.setVolume(23);
+//        MusicPlayer musicPlayer2 = new MusicPlayer(music2);
 //
-//        System.out.println(firstMusicPlayer.getVolume());
-//        System.out.println(secondMusicPlayer.getVolume());
+//        musicPlayer2.playMusic();
 
-        ClassicalMusic classicalMusic = context.getBean("musicBean", ClassicalMusic.class);
-//        System.out.println(classicalMusic.getSong());
-        classicalMusic.setVolume(78);
-        System.out.println(classicalMusic.getVolume());
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusic(EnumMusic.ClassicalMusic);
+        musicPlayer.playMusic(EnumMusic.JazzMusic);
 
-        ClassicalMusic classicalMusic1 = context.getBean("musicBean", ClassicalMusic.class);
-        System.out.println(classicalMusic1.getVolume());
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());
+
+        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+
+//        MP3Player mp3Player = context.getBean("mp3", MP3Player.class);
+//        System.out.println(mp3Player.toString());
 
         context.close();
     }
