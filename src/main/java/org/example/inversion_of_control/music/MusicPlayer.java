@@ -1,9 +1,8 @@
 package org.example.inversion_of_control.music;
 
-import org.example.inversion_of_control.music.enum_music.EnumMusic;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
 import java.util.Random;
 
 //@Component
@@ -22,13 +21,14 @@ public class MusicPlayer {
     }
 
     // DI via field
-    private Music music1;
-    private Music music2;
+//    private Music music1;
+//    private Music music2;
+    private List<Music> musicList;
+
 
 //    @Autowired
-    public MusicPlayer(@Qualifier("jazzMusic") Music music1, @Qualifier("classicalMusic") Music music2) {
-        this.music1 = music1;
-        this.music2 = music2;
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
 
@@ -44,22 +44,25 @@ public class MusicPlayer {
 //        this.music = music;
 //    }
 
-    public void playMusic(EnumMusic enumMusic){
+    public void playMusic(){
         Random random = new Random();
-        int randomNumber = random.nextInt(3);
+        int randomMusic = random.nextInt(3);
+        int randomGenre = random.nextInt(musicList.size());
+
+        System.out.println(musicList.get(randomGenre).getSong().get(randomMusic));
 
 //        switch (enumMusic){
 //            case ClassicalMusic:
-//                System.out.println(music2.getSong().get(randomNumber));
+//                System.out.println(music2.getSong().get(randomMusic));
 //            case JazzMusic:
-//                System.out.println(music1.getSong().get(randomNumber));
+//                System.out.println(music1.getSong().get(randomMusic));
 //            default:
 //                System.out.println("Not found music");
 //        }
-        if (enumMusic == EnumMusic.ClassicalMusic){
-            System.out.println(music2.getSong().get(randomNumber));
-        } else {
-            System.out.println(music1.getSong().get(randomNumber));
-        }
+//        if (enumMusic == EnumMusic.ClassicalMusic){
+//            System.out.println(music2.getSong().get(randomMusic));
+//        } else {
+//            System.out.println(music1.getSong().get(randomMusic));
+//        }
     }
 }

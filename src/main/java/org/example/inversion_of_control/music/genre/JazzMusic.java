@@ -1,10 +1,12 @@
-package org.example.inversion_of_control.music;
+package org.example.inversion_of_control.music.genre;
+
+import org.example.inversion_of_control.music.Music;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //@Component
-public class JazzMusic implements Music{
+public class JazzMusic implements Music {
     private List<String> listJazzMusics = new ArrayList<>();
 
     {
