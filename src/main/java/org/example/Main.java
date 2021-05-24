@@ -2,13 +2,13 @@ package org.example;
 
 import org.example.inversion_of_control.music.ClassicalMusic;
 import org.example.inversion_of_control.music.MusicPlayer;
+import org.example.inversion_of_control.music.SpringConfig;
 import org.example.inversion_of_control.music.enum_music.EnumMusic;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new
-                ClassPathXmlApplicationContext("applicationContext.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
 //        Music music = context.getBean("classicalMusic", Music.class);
 //

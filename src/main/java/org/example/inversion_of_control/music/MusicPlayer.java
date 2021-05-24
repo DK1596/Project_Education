@@ -1,14 +1,12 @@
 package org.example.inversion_of_control.music;
 
 import org.example.inversion_of_control.music.enum_music.EnumMusic;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Component
+//@Component
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
     private String name;
@@ -27,7 +25,7 @@ public class MusicPlayer {
     private Music music1;
     private Music music2;
 
-    @Autowired
+//    @Autowired
     public MusicPlayer(@Qualifier("jazzMusic") Music music1, @Qualifier("classicalMusic") Music music2) {
         this.music1 = music1;
         this.music2 = music2;
