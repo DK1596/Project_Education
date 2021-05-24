@@ -1,17 +1,17 @@
-package org.example.inversion_of_control.music;
+package org.example.inversion_of_control.music.genre;
 
-import org.springframework.stereotype.Component;
+import org.example.inversion_of_control.music.Music;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ClassicalMusic implements Music{
+//@Component
+public class ClassicalMusic implements Music {
     private int volume;
 
-    private ClassicalMusic(){}
+//    private ClassicalMusic(){}
 
     public static ClassicalMusic getClassicalMusic(){
         return new ClassicalMusic();
