@@ -2,6 +2,8 @@ package org.example.inversion_of_control.music;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,12 @@ public class ClassicalMusic implements Music{
         this.volume = volume;
     }
 
+    @PostConstruct
     public void initMethod(){
         System.out.println("doing initialization");
     }
 
+    @PreDestroy
     public void destroyMethod(){
         System.out.println("doing destruction");
     }

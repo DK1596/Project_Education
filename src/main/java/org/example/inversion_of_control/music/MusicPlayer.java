@@ -3,12 +3,26 @@ package org.example.inversion_of_control.music;
 import org.example.inversion_of_control.music.enum_music.EnumMusic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
 public class MusicPlayer {
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
     // DI via field
     private Music music1;
     private Music music2;
